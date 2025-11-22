@@ -1,7 +1,6 @@
 document.getElementById("numar_persoane").addEventListener("input", function () {
     document.getElementById("valoare_persoane").textContent = this.value;
 });
-//slidere
 document.getElementById("numar_nopti").addEventListener("input", function () {
     document.getElementById("valoare_nopti").textContent = this.value;
 });
@@ -15,19 +14,16 @@ document.getElementById("rezervariForm").addEventListener("submit", function (ev
     const destination = document.getElementById("destination").value;
     const numarPersoane = document.getElementById("numar_persoane").value;
     const numarNopti = document.getElementById("numar_nopti").value;
-//validare email
     const emailRegex = document.getElementById("email");
     if (!emailRegex.test(email)) {
         alert("Adresa de email nu este validă. Asigură-te că are formatul corect (exemplu@domeniu.com/.ro/.co).");
         return; 
     }
-//validare telefon
     const phoneRegex = document.getElementById("phone");
     if (!phoneRegex.test(phone)) {
         alert("Numărul de telefon nu este valid. Asigură-te că începe cu 07 și are exact 10 cifre.");
         return; 
     }
-// afiseaza pop-up daca toate datele au trecut validarea
     const popup = document.getElementById("popup");
     popup.textContent = `Am primit formularul Dvs. Vă vom contacta în legatura cu rezervarea voastră de ${numarNopti} nopți pentru ${numarPersoane} persoane.`;
     popup.style.display = "block";
@@ -39,11 +35,9 @@ document.getElementById("rezervariForm").addEventListener("submit", function (ev
     setTimeout(() => {
         popup.style.display = "none";
     }, 3000);
-    // Utilizăm `Math.random()` pentru a schimba aleatoriu culoarea fundalului butonului
     const randomColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
     button.style.backgroundColor = randomColor;
 
-    // Salvăm datele în 'localStorage'
     localStorage.setItem("name", name);
     localStorage.setItem("email", email);
     localStorage.setItem("phone", phone);
@@ -51,7 +45,6 @@ document.getElementById("rezervariForm").addEventListener("submit", function (ev
     localStorage.setItem("numarPersoane", numarPersoane);
     localStorage.setItem("numarNopti", numarNopti);
 });
-//  un pop-up dinamic pentru mesaj
 const popupForm = document.createElement("div");
 popupForm.id = "popup-form";
 popupForm.textContent = "Vă rugăm să completați formularul!";
@@ -72,16 +65,14 @@ document.addEventListener("keydown", function (event) {
 
         popupForm.style.transform = "scale(1.1)";
 
-        // Ascundem pop-up-ul după 3 secunde și resetam animatia
         setTimeout(() => {
             popupForm.style.display = "none";
-            popupForm.style.backgroundColor = "rgba(255, 0, 0, 0.8)"; // Resetăm culoarea
+            popupForm.style.backgroundColor = "rgba(255, 0, 0, 0.8)"; 
         }, 3000);
     }
 });
 
-// Adăugăm un eveniment pentru pop-up
-//daca apas pe pop-up
+
 popupForm.addEventListener("click", function (event) {
     if (popupForm.style.display === "block") { 
         event.stopPropagation();
@@ -101,7 +92,6 @@ popupForm.addEventListener("click", function (event) {
         alert("Ați apăsat pe pop-up!");
     }
 });
-//daca dau click langa pop-up
 document.addEventListener("click", function () {
     if (popupForm.style.display === "block") {
         alert("Ați făcut click în afara pop-up-ului!");
